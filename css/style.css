@@ -24,17 +24,6 @@ p.main {
     top: 0;
 }
 
-#image {
-  position: absolute;
-  width: auto;
-  height: auto;
-  max-width: 200px;
-  max-height: 200px;
-  left: 120px;
-  top: 370px;
-  bottom: 500px;
-}
-
 [src=''] {
     visibility: hidden;
 }

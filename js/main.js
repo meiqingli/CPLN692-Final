@@ -6,7 +6,7 @@ var map = L.map('map', {
   center: [37.7576793,-122.4576403],
   zoom: 12
 });
-var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', {
   attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   subdomains: 'abcd',
   minZoom: 0,
@@ -99,32 +99,27 @@ map.removeLayer(featureGroup);
   //map.setZoom(13);
   map.setView([37.797534,-122.469531], 13);
   text = "driveways of very low density without parking. These streets are multilane divided, undivided or two-lane with shoulders. Speed limit for this type of streets usually ranges from 75 to 90 km/h. Since they are located in vary low density areas, there are very little pedestrian activity and roadside development.";
-  document.getElementById("image").src="images/US1.png";
  }
  if (countPage == 2){
   myFilter = Filter2;
   map.setView([37.7576793,-122.4576403], 12);
   streettype = "Urban Street II (Suburban)";
   text="driveways of low density without parking. These streets are multilane divided, undivided or two-lane with shoulders. Speed limit for this type of streets usually ranges from 65 to 75 km/h. Pedestrian activity is little, and there are often low to medium density roadside development. ";
-  document.getElementById("image").src="images/US2.png";
  }
  if (countPage == 3){
   myFilter = Filter3;
   streettype = "Urban Street III (Intermediate)";
   text="driveways of moderate density with some parking. These streets are multilane divided or undivided, or one-way, two-lane. Speed limit for this type of streets usually ranges from 50 to 65 km/h. There are some pedestrian activities with medium to moderate density roadside development.";
-  document.getElementById("image").src="images/US3.png";
  }
  if (countPage == 4){
   myFilter = Filter4;
   streettype = "Urban Street IV (Urban)";
   text="driveways of high density with significant parking. These streets are usually undivided one-way or two-way with two or more lanes. Speed limit for this type of streets usually ranges from 40 to 55 km/h. There are usually pedestrian activities with high density roadside development.";
-  document.getElementById("image").src="images/US4.png";
  }
  if (countPage == 5){
   myFilter = freewayFilter;
   streettype = "Freeway";
   text="A freeway is defined as a divided highway facility with two or more lanes in each direction and full control of access and egress. It has no intersections; access and egress are provided by ramps at interchanges.";
-  document.getElementById("image").src="images/Freeway.png";
   $('#next').hide();
  }
  $(".street-type").text(streettype);
@@ -156,32 +151,27 @@ $('#previous').click(function(){
     myFilter = Filter1;
     streettype = "Urban Street I (High Speed)";
     text = "driveways of very low density without parking. These streets are multilane divided, undivided or two-lane with shoulders. Speed limit for this type of streets usually ranges from 75 to 90 km/h. Since they are located in vary low density areas, there are very little pedestrian activity and roadside development.";
-    document.getElementById("image").src="images/US1.png";
     $('#previous').hide();
    }
    if (countPage == 2){
     myFilter = Filter2;
     streettype = "Urban Street II (Suburban)";
     text="driveways of low density without parking. These streets are multilane divided, undivided or two-lane with shoulders. Speed limit for this type of streets usually ranges from 65 to 75 km/h. Pedestrian activity is little, and there are often low to medium density roadside development. ";
-    document.getElementById("image").src="images/US2.png";
    }
    if (countPage == 3){
     myFilter = Filter3;
     streettype = "Urban Street III (Intermediate)";
     text="driveways of moderate density with some parking. These streets are multilane divided or undivided, or one-way, two-lane. Speed limit for this type of streets usually ranges from 50 to 65 km/h. There are some pedestrian activities with medium to moderate density roadside development.";
-    document.getElementById("image").src="images/US3.png";
    }
    if (countPage == 4){
     myFilter = Filter4;
     streettype = "Urban Street IV (Urban)";
     text="driveways of high density with significant parking. These streets are usually undivided one-way or two-way with two or more lanes. Speed limit for this type of streets usually ranges from 40 to 55 km/h. There are usually pedestrian activities with high density roadside development.";
-    document.getElementById("image").src="images/US4.png";
    }
    if (countPage == 5){
     myFilter = freewayFilter;
     streettype = "Freeway";
     text="A freeway is defined as a divided highway facility with two or more lanes in each direction and full control of access and egress. It has no intersections; access and egress are provided by ramps at interchanges.";
-    document.getElementById("image").src="images/Freeway.png";
    }
    $(".street-type").text(streettype);
    $(".description").text(text);
@@ -208,7 +198,6 @@ $('#back').click(function(event){
   countPage = 0;
   map.removeLayer(featureGroup);
   map.setZoom(12);
-  document.getElementById("image").src= "/./.:0" ;
   $('#next').show();
   $('#previous').hide();
   $('#intro').show();
