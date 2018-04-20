@@ -1,62 +1,68 @@
 <!DOCTYPE html>
+
 <html>
   <head>
+    <meta charset="utf-8">
     <!-- CSS Imports -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.css" integrity="sha256-iYUgmrapfDGvBrePJPrMWQZDcObdAcStKBpjP3Az+3s=" crossorigin="anonymous" />
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
   </head>
   <body>
-
-    <!--Left Panel-->
+    <!-- Sidebar -->
     <div class="sidebar">
-      <div id="intro">
-        <h1>Congestion Management Program in San Francisco</h1>
-        <p class="main">Traffic congestion is widely perceived as outpacing the ability of the traditional transportation planning process to provide solutions.
-          In San Francisco, with its highintensity land uses and extensive transit network, traffic congestion poses a different problem than in lower-density counties,
-          challenging conventional interpretations of the nature of the congestion problem. <br><br>
-          The CMP requirements are the legislature’s response to the traffic congestion experienced by all urbanized areas of California.
-          The 1993 CMP documented the criteria used in 1991 to segment the CMP roadway network in San Francisco, including freeway facilities.
-          The following five criteria determined segment limits for the city arterials in the CMP: predominant development patterns (e.g., number of driveways, institutional uses);
-          changes in speed limits; major cross streets; significant changes in traffic volumes; and freeway ramps.</p>
+      <nav class="navbar navbar-default">
+        <div class="container-fluid clearfix">
+          <div class="topright-button" style="float: right">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Add New
+            <span class="caret"></span></button>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a href="#">View History</a></li>
+              <li><a href="#">Email All Manufacturers</a></li>
+            </ul>
+          </div>
+          <div class="navbar-header">
+            <a href="#">Manufacturers</a>
+          </div>
+        </div>
+      </nav>
+      <div class="item">
+        <h2 class="item-heading">Tandy’s Basketweavers</h2>
+        <div>490 Freedom Drive<br>
+        Philadelphia, PA 19425</div>
       </div>
-    <div class="note">
-      <p>Click each CMP segment to see the street name.</p>
-    </div>
-    <div class="source">
-      <p>Source: <a href="http://www.sfcta.org/sites/default/files/content/Planning/CongestionManagementPlan/2017/CMP_2017_12.05.17.pdf">
-        San Francisco County Transportation Authority </a></p>
-    </div>
-    <button id="back" style="display: none">Back</button>
-    <button id="next">Next &raquo;</button>
-    <button id="previous" style="display: none";>&laquo; Previous</button>
-      <div id="results" style="display: none;">
-        <h1 class="street-type">streettype</h1>
-        <p class="main">There are five types of  CMP street segments in San Francisco by design categories in Highway Capacity Manual 2000,
-          specifically Urban Street I, II, III, IV, and Freeway.<br><br>
-          <span class="street-type">streettype</span> refers to <span class="description">text</span><br>
-       </p>
+      <div class="item">
+        <h2 class="item-heading">Basket Case</h2>
+        <div>400 S 46th Street<br>
+        Philadelphia, PA 19144</div>
+      </div>
+      <div class="item">
+        <h2 class="item-heading">Bas-kids: Baskets 4 Kids</h2>
+        <div>2558 Walnut Street<br>
+        Philadelphia, PA 19107</div>
+      </div>
+      <div class="item">
+        <h2 class="item-heading">Bask in the Glory</h2>
+        <div>2501 Walnut Street<br>
+        Philadelphia, PA 19107</div>
+      </div>
+      <div class="item">
+        <h2 class="item-heading">Basket Ball</h2>
+        <div>2542 Walnut Street<br>
+        Philadelphia, PA 19107</div>
+      </div>
+      <div class="sort">
+        Sort by <span class="sort-option selected">A–Z</span> <span class="sort-option">Inventory</span>
       </div>
     </div>
     <!-- Map -->
-    <div id="map"></div>
-    <!-- Legend -->
-  <div class="legend">
-    <div class='legend-title'>Legend</div>
-    <div class='legend-scale'>
-      <ul class='legend-labels'>
-        <li><span style='background:#8DD3C7;'></span>Urban Street I</li>
-        <li><span style='background:#FFFFB3;'></span>Urban Street II</li>
-        <li><span style='background:#BEBADA;'></span>Urban Street III</li>
-        <li><span style='background:#FB8072;'></span>Urban Street IV</li>
-        <li><span style='background:#80B1D3;'></span>Freeway</li>
-      </ul>
-    </div>
-  </div>
-
+    <div id="map" class="map"></div>
     <!-- Javascript Imports -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js" integrity="sha256-obZACiHd7gkOk9iIL/pimWMTJ4W/pBsKu+oZnSeBIek=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js" integrity="sha256-CNm+7c26DTTCGRQkM9vp7aP85kHFMqs9MhPEuytF+fQ=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js" integrity="sha256-SzKOQsVYGX1bmddyfPzGC6yXY/rWYGUSMOi6+T9gZ+0=" crossorigin="anonymous"></script>
-    <script src="js/main.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="js/setup.js"></script>
   </body>
 </html>

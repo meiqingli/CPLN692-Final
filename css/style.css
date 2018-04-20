@@ -1,138 +1,96 @@
 body {
     padding: 0;
     overflow: hidden;
-    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
-h1 {
-  font-size: 24px;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-}
-
-p.main {
-  font-size: 14px;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-  position: absolute;
-  top: 130px;
-}
-
-#map {
+.map {
     position: absolute;
     right: 0px;
-    left: 450px;
+    left: 340px;
     height: 100%;
     top: 0;
-}
-
-[src=''] {
-    visibility: hidden;
-}
-
-#back {
-  position: absolute;
-  left: 100px;
-  top: 540px;
-  background-color: #d6d4d4;
-  padding: 5px 15px;
-  border-radius: 5px;
-  cursor:pointer
-}
-
-#next {
-  position: absolute;
-  left: 300px;
-  top: 540px;
-  background-color: #d6d4d4;
-  padding: 5px 15px;
-  border-radius: 5px;
-  cursor:pointer
-}
-
-#previous {
-  position: absolute;
-  left: 200px;
-  top: 540px;
-  background-color: #d6d4d4;
-  padding: 5px 15px;
-  border-radius: 5px;
-  cursor:pointer
-}
-
-.street-type {
-  font-weight: bold;
 }
 
 .sidebar {
     position: absolute;
     left: 0px;
-    width: 400px;
+    width: 340px;
     top: 0;
     bottom: 0;
     overflow-y: auto;
     padding: 20px;
+    padding-bottom: 60px;
+}
+
+.item {
+    padding: 10px;
+    background-color: #eee;
+}
+
+.item:not(:last-child) {
+    margin-bottom: 10px;
+}
+
+.item-heading {
+    font-size: 18px;
+    margin-top: 0;
+    font-weight: bold;
+}
+
+.sort {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 340px;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.sort-option {
+    margin-left: 10px;
+}
+
+.sort-option.selected {
+    border-bottom: 1px solid #ccc;
+}
+
+.sidebar nav.navbar-default {
+    border: 0;
+    border-radius: 0;
+    background-color: #fff;
+    border-bottom: 1px solid #eee;
+    margin: -14px -20px 20px;
+    padding: 10px 20px 15px;
+}
+
+.topright-button {
+  background-color: #0099cc;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.navbar-brand {
     font-size: 14px;
+    font-weight: bold;
 }
 
-.note {
-  position: absolute;
-  left: 0px;
-  width: 380px;
-  top: 580px;
-  overflow-y: auto;
-  padding: 20px;
-  font-size: 14px;
-  color: #777;
+/* =============
+Media Queries
+============= */
+
+@media screen and (min-width: 480px) and (max-width: 800px) {
+    /*.item {
+        background-color: blue;
+    }*/
 }
 
-.source {
-  position: absolute;
-  left: 0px;
-  width: 380px;
-  top: 600px;
-  overflow-y: auto;
-  padding: 20px;
-  font-size: 14px;
-  color: #777;
+@media screen and (max-width: 479px) {
+    /*.item {
+        background-color: red;
+    }*/
 }
-
-.legend {
-  position: absolute;
-  left: 460px;
-  top:550px;
-  background-color: #217217217;
-  z-index: 2000;
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
-}
-
-.legend .legend-title {
-   text-align: left;
-   margin-bottom: 5px;
-   font-weight: bold;
-   font-size: 90%;
-   }
- .legend .legend-scale ul {
-   margin: 0;
-   margin-bottom: 5px;
-   padding: 0;
-   float: left;
-   list-style: none;
-   }
- .legend .legend-scale ul li {
-   font-size: 80%;
-   list-style: none;
-   margin-left: 0;
-   line-height: 18px;
-   margin-bottom: 2px;
-   }
- .legend ul.legend-labels li span {
-   display: block;
-   float: left;
-   height: 16px;
-   width: 30px;
-   margin-right: 5px;
-   margin-left: 0;
-   border: 1px solid #999;
-   }
- .legend a {
-   color: #777;
-   }
