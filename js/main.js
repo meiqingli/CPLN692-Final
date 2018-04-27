@@ -39,10 +39,14 @@ var segments = cartodb.createLayer(map, {
       sql: "SELECT * FROM road",
       cartocss: '#road { line-width: 1;line-color: #717975;line-opacity: 1;}',
       interactivity: ['cls_hcm00', 'direction']
-   }
-
-
+   },
+    {
+       sql: "SELECT * FROM road",
+       cartocss: '#road { line-width: 1;line-color: #717975;line-opacity: 1;}',
+       interactivity: ['cls_hcm00', 'direction']
+    },
   ]
+
 }).addTo(map)
   .on('done', function(layer) {
     // Set interactivity
