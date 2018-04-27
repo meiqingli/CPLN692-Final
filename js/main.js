@@ -1,10 +1,10 @@
 // Leaflet map setup
 var map = L.map('map', {
-  center: [39.923004, -75.183477],
-  zoom: 13
+  center: [37.7576793,-122.4576403],
+  zoom: 12
 });
 
-var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png', {
+var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
   attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   subdomains: 'abcd',
   minZoom: 0,
@@ -12,30 +12,45 @@ var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_nolab
   ext: 'png'
 }).addTo(map);
 
-// To add your Carto visualization, change cartoUserName and cartoVizId to your username and
-// project ID. These values can be found in the URL of your map on Carto:
-// - https://[cartoUserName].carto.com/[cartoVizId]
+/* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+function openNav() {
+    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("main").style.marginLeft = "250px";
+    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
+}
 
-// Unfortunately, only some visualizations styles are available in this method:
-//
-// - None
-// - Animated
-// - Pixel
-//
-// This is a bummer. But don't worry, we'll learn about how to do more powerful visualizations
-// with Carto next week when we learn about SQL
+/* Set the width of the side navigation to 0 and the left margin of the page content to 0, and the background color of body to white */
+function closeNav() {
+    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("main").style.marginLeft = "0";
+    document.body.style.backgroundColor = "white";
+}
 
-// To add visualizations created with the Analysis feature, you will need to export the data to a
-// GeoJSON. From there, you can either import the GeoJSON to Carto or use Leaflet's L.geoJson.
+var cartoUserName = 'meiqingli';
 
-var cartoUserName = 'jfreink';
-var cartoVizId = '1f7c9af2-1088-11e7-9c60-0e05a8b3e3d7';
+var myLayer;
 
-var layerUrl = 'https://'+cartoUserName+'.carto.com/api/v2/viz/'+cartoVizId+'/viz.json';
+var segments = cartodb.createLayer(map, {
+  user_name: cartoUserName,
+  type: 'cartodb',
+  interactivity: true,
+  sublayers: [
+    {
+      sql: "SELECT * FROM road",
+      cartocss: '#road { line-width: 1;line-color: #717975;line-opacity: 1;}',
+      interactivity: ['cls_hcm00', 'direction']
+   }
 
-cartodb.createLayer(map, layerUrl)
+
+  ]
+}).addTo(map)
   .on('done', function(layer) {
-    layer.addTo(map);
-  }).on('error', function(err) {
-    console.log(err);
-  });
+    // Set interactivity
+    layer.setInteraction(true);
+    // Set up event
+    layer.on('featureClick',function(e, latlng, pos, data) {
+      console.log(data);
+    });
+  }).on('error', function() {
+    console.log("some error occurred");
+});

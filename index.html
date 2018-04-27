@@ -9,15 +9,88 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.draw/0.2.3/leaflet.draw.css" />
     <link rel="stylesheet" href="css/reset.css" />
     <link rel="stylesheet" href="css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans" rel="stylesheet">
   </head>
   <body>
+
+  <!-- Side Navigation Bar-->
+    <div id="mySidenav" class="sidenav">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <a href="#">About</a>
+      <a href="#">Congestion Management</a>
+      <a href="#">Bart Ridership</a>
+      <a href="#">Contact</a>
+    </div>
+  <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
+  <div id="main">
     <!-- Sidebar -->
     <div class="sidebar">
-      <h1>Carto Map!</h1>
-      <p>I made this map using Carto.</p>
+      <!-- Use any element to open the sidenav -->
+      <button class="button" onclick="openNav()">Menu</button>
+      <h1>San Francisco Traffic Data Portal</h1>
+      <p>Traffic congestion is widely perceived as outpacing the ability of the traditional transportation planning process to provide solutions.
+        In San Francisco, with its highintensity land uses and extensive transit network, traffic congestion poses a different problem than in lower-density counties,
+        challenging conventional interpretations of the nature of the congestion problem.</p>
     </div>
     <!-- Map -->
     <div id="map" class="map"></div>
+    <!-- Click dark -->
+
+    <!-- legend -->
+    <ul>
+
+        <li class="Legend-categoryListItem u-flex u-alignCenter">
+
+            <span class="Legend-categoryCircle" style="opacity:1; background: #528995;"></span>
+
+
+          <p class="Legend-categoryTitle CDB-Text CDB-Size-small u-upperCase u-ellipsis" title="Urban Street I (high speed)">Urban Street I (high speed)</p>
+        </li>
+
+        <li class="Legend-categoryListItem u-flex u-alignCenter">
+
+            <span class="Legend-categoryCircle" style="opacity:1; background: #FF710F;"></span>
+
+
+          <p class="Legend-categoryTitle CDB-Text CDB-Size-small u-upperCase u-ellipsis" title="Urban Street II (suburb)">Urban Street II (suburb)</p>
+        </li>
+
+        <li class="Legend-categoryListItem u-flex u-alignCenter">
+
+            <span class="Legend-categoryCircle" style="opacity:1; background: #305482;"></span>
+
+
+          <p class="Legend-categoryTitle CDB-Text CDB-Size-small u-upperCase u-ellipsis" title="Urban Street III (intermediate)">Urban Street III (intermediate)</p>
+        </li>
+
+        <li class="Legend-categoryListItem u-flex u-alignCenter">
+
+            <span class="Legend-categoryCircle" style="opacity:1; background: #CCD859;"></span>
+
+
+          <p class="Legend-categoryTitle CDB-Text CDB-Size-small u-upperCase u-ellipsis" title="Urban Street IV (urban)">Urban Street IV (urban)</p>
+        </li>
+
+        <li class="Legend-categoryListItem u-flex u-alignCenter">
+
+            <span class="Legend-categoryCircle" style="opacity:1; background: #565175;"></span>
+
+
+          <p class="Legend-categoryTitle CDB-Text CDB-Size-small u-upperCase u-ellipsis" title="Freeway">Freeway</p>
+        </li>
+
+        <li class="Legend-categoryListItem u-flex u-alignCenter">
+
+            <span class="Legend-categoryCircle" style="opacity:1; background: #7b7975;"></span>
+
+
+          <p class="Legend-categoryTitle CDB-Text CDB-Size-small u-upperCase u-ellipsis" title="CMP segment">CMP segment</p>
+        </li>
+
+    </ul>
+
+  </div>
+
     <!-- Javascript Imports -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
@@ -26,4 +99,3 @@
     <script src="js/main.js"></script>
   </body>
 </html>
-
