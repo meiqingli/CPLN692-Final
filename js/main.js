@@ -41,8 +41,28 @@ var segments = cartodb.createLayer(map, {
       interactivity: ['cls_hcm00', 'direction']
    },
     {
-       sql: "SELECT * FROM road",
-       cartocss: '#road { line-width: 1;line-color: #717975;line-opacity: 1;}',
+       sql: "SELECT * FROM road where cls_hcm00 = 'Fwy'",
+       cartocss: '#road {line-width: 2;line-color: #80b1d3;line-opacity: 1;}',
+       interactivity: ['cls_hcm00', 'direction']
+    },
+    {
+       sql: "SELECT * FROM road where cls_hcm00 = '1'",
+       cartocss: '#road {line-width: 2;line-color: #8dd3c7;line-opacity: 1;}',
+       interactivity: ['cls_hcm00', 'direction']
+    },
+    {
+       sql: "SELECT * FROM road where cls_hcm00 = '2'",
+       cartocss: '#road {line-width: 2;line-color: #ffffb3;line-opacity: 1;}',
+       interactivity: ['cls_hcm00', 'direction']
+    },
+    {
+       sql: "SELECT * FROM road where cls_hcm00 = '3'",
+       cartocss: '#road {line-width: 2;line-color: #bebada;line-opacity: 1;}',
+       interactivity: ['cls_hcm00', 'direction']
+    },
+    {
+       sql: "SELECT * FROM road where cls_hcm00 = '4'",
+       cartocss: '#road {line-width: 2;line-color: #fb8072;line-opacity: 1;}',
        interactivity: ['cls_hcm00', 'direction']
     },
   ]
