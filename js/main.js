@@ -1,4 +1,6 @@
-// // Leaflet map setup
+// init map when document ready
+$(() => {
+    // // Leaflet map setup
 // var map = L.map('map', {
 //   center: [37.7576793,-122.4576403],
 //   zoom: 12
@@ -102,3 +104,4 @@ function closeNav() {
 //   }).on('error', function() {
 //     console.log("some error occurred");
 // });
+})
