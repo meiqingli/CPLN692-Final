@@ -1,3 +1,4 @@
+/* global $, mapboxgl */
 // constants
 var roadsUrl = 'https://gist.githubusercontent.com/meiqingli/29972740342cff8c3ab514750d3ab1fd/raw/382fbc90bed5a7e087b7e9d76c766960b5e52df5/SFroads';
 var cmpUrl = 'https://gist.githubusercontent.com/meiqingli/d9de32bd2ffa2194303f731e67d2cd9d/raw/cee8a44a6c6d29e7aa04f3bc851a289c0580e9ef/SFCMP';
@@ -8,6 +9,7 @@ async function doAjax(url) {
     result = await $.getJSON(url);
     return result;
   } catch (error) {
+    // eslint-disable-next-line
     console.error(error);
   }
 }
