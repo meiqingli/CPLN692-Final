@@ -15,6 +15,46 @@ var map = new mapboxgl.Map({
   zoom: 11
 });
 
+var data_SFroads = "https://raw.githubusercontent.com/meiqingli/CPLN692-Final/data/2013SF_roads.geojson";
+var data_CMP = "https://raw.githubusercontent.com/meiqingli/CPLN692-Final/master/data/road.geojson";
+var SFroads = $ajax(data_SFroads);
+var CMProads = $ajax(data_CMP);
+
+map.on('load', function() {
+  map.addLayer({
+    id: 'SFroads',
+    type: 'line',
+    source: {
+      type: 'geojson',
+      data: SFroads
+    },
+    layout: {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    paint: {
+      "line-color": "#888",
+      "line-width": 3
+    }
+  });
+  map.addLayer({
+    id: 'CMProads',
+    type: 'line',
+    source: {
+      type: 'geojson',
+      data: CMProads
+    },
+    layout: {
+      "line-join": "round",
+      "line-cap": "round"
+    },
+    paint: {
+      "line-color": "#888",
+      "line-width": 5
+    }
+  });
+});
+
 // var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
 //   attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
 //   subdomains: 'abcd',
@@ -104,4 +144,4 @@ function closeNav() {
 //   }).on('error', function() {
 //     console.log("some error occurred");
 // });
-})
+});
