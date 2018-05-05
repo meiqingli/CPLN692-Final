@@ -5,6 +5,7 @@
 // });
 
 // Mapbox map setup
+mapboxgl.accessToken = 'pk.eyJ1IjoibWVpcWluZ2xpIiwiYSI6ImNqZ2l2MHRscjAweTIyeHA2Nm4zZGVyMzQifQ.IaIhKeNNWzmjPixFyA8-Rw';
 var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/meiqingli/cjgiwyhim001x2smxyd2xcn67',
@@ -21,17 +22,17 @@ var map = new mapboxgl.Map({
 // }).addTo(map);
 
 // Add Mapbox layer to map
-map.on('load', function() {
-  map.addLayer({
-    id: 'terrain-data',
-    type: 'line',
-    source: {
-      type: 'vector',
-      url: 'mapbox://mapbox.mapbox-terrain-v2'
-    },
-    'source-layer': 'contour'
-  });
-});
+// map.on('load', function() {
+//   map.addLayer({
+//     id: 'terrain-data',
+//     type: 'line',
+//     source: {
+//       type: 'vector',
+//       url: 'mapbox://mapbox.mapbox-terrain-v2'
+//     },
+//     'source-layer': 'contour'
+//   });
+// });
 
 /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
 function openNav() {
