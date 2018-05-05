@@ -8,9 +8,9 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoibWVpcWluZ2xpIiwiYSI6ImNqZ2l2MHRscjAweTIyeHA2Nm4zZGVyMzQifQ.IaIhKeNNWzmjPixFyA8-Rw';
 var map = new mapboxgl.Map({
   container: 'map',
-  style: 'mapbox://styles/mapbox/streets-v9',
+  style: 'mapbox://styles/meiqingli/cjgiwyhim001x2smxyd2xcn67',
   center: [-122.4576403, 37.7576793],
-  zoom: 12
+  zoom: 11
 });
 
 // var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
