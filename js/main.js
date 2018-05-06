@@ -66,7 +66,31 @@ $(() => {
         'line-color': '#888',
         'line-width': 3
       }
+    });
 
+    map.addLayer({
+      id: 'CMPtypes',
+      type: 'line',
+      source: {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features:[{
+            type: 'Feature',
+            properties: {
+              cls_hcm00: '1'
+            },
+          }]
+        },
+      },
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round'
+      },
+      paint: {
+        'line-color': '#8DD3C7',
+        'line-width': 3
+      }
     });
 
     //add popup of CMP names
@@ -101,71 +125,65 @@ $(() => {
   {return {color: '#80B1D3'};}
 };
 
-// var showResults = function() {
-//   $('#intro').hide();
-//   $('#results').show();
+// var Filter = function(feature) {
+//   return true;};
+//
+// var Filter1 = function(feature) {
+//   if (feature.properties.cls_hcm00 == "1"){return true;}
+//   else {return false;}
 // };
+//
+// var Filter2 = function(feature) {
+//   if (feature.properties.cls_hcm00 == "2"){return true;}
+//   else {return false;}
+// };
+//
+// var Filter3 = function(feature) {
+//   if (feature.properties.cls_hcm00 == "3"){return true;}
+//   else {return false;}
+// };
+//
+// var Filter4 = function(feature) {
+//   if (feature.properties.cls_hcm00 == "4"){return true;}
+//   else {return false;}
+// };
+//
+// var freewayFilter = function(feature) {
+//   if (feature.properties.cls_hcm00 == "Fwy"){return true;}
+//   else {return false;}
+// };
+//
+// var myFilter = Filter;
 
-var Filter = function(feature) {
-  return true;};
+// $(document).ready(function() {
+//   $.ajax(cmpUrl).done(function(data) {
+//     var parsedData = JSON.parse(data);
+//     featureGroup = L.geoJson(parsedData, {
+//       style: myStyle,
+//       filter: myFilter,
+//     }).addTo(map);
+//   });
+// });
 
-var Filter1 = function(feature) {
-  if (feature.properties.cls_hcm00 == "1"){return true;}
-  else {return false;}
-};
-
-var Filter2 = function(feature) {
-  if (feature.properties.cls_hcm00 == "2"){return true;}
-  else {return false;}
-};
-
-var Filter3 = function(feature) {
-  if (feature.properties.cls_hcm00 == "3"){return true;}
-  else {return false;}
-};
-
-var Filter4 = function(feature) {
-  if (feature.properties.cls_hcm00 == "4"){return true;}
-  else {return false;}
-};
-
-var freewayFilter = function(feature) {
-  if (feature.properties.cls_hcm00 == "Fwy"){return true;}
-  else {return false;}
-};
-
-var myFilter = Filter;
-
-$(document).ready(function() {
-  $.ajax(cmpUrl).done(function(data) {
-    var parsedData = JSON.parse(data);
-    featureGroup = L.geoJson(parsedData, {
-      style: myStyle,
-      filter: myFilter,
-    }).addTo(map);
-  });
-});
-
-$('HighSpeed').click(function(event){
-map.removeLayer(featureGroup);
-  myFilter = Filter1;
-});
-
-$('Suburban').click(function(event){
-  myFilter = Filter2;
-});
-
-$('Intermediate').click(function(event){
-  myFilter = Filter3;
-});
-
-$('Urban').click(function(event){
-  myFilter = Filter4;
-});
-
-$('Freeway').click(function(event){
-  myFilter = freewayFilter;
-});
+// $('HighSpeed').click(function(event){
+//   myFilter = Filter1;
+// });
+//
+// $('Suburban').click(function(event){
+//   myFilter = Filter2;
+// });
+//
+// $('Intermediate').click(function(event){
+//   myFilter = Filter3;
+// });
+//
+// $('Urban').click(function(event){
+//   myFilter = Filter4;
+// });
+//
+// $('Freeway').click(function(event){
+//   myFilter = freewayFilter;
+// });
 
   /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
   function openNav() {
