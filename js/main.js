@@ -79,7 +79,7 @@ $(() => {
             type: 'Feature',
             properties: {
               cls_hcm00: '1'
-            },
+            }
           }]
         },
       },
@@ -110,6 +110,7 @@ $(() => {
       map.getCanvas().style.cursor = features.length ? 'pointer' : '';
     });
   });
+
 
   //filter CMP segments
   var myStyle = function(feature) {
@@ -184,8 +185,7 @@ $(() => {
 // $('Freeway').click(function(event){
 //   myFilter = freewayFilter;
 // });
-
-  /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
+// * Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
   function openNav() {
     document.getElementById('mySidenav').style.width = '250px';
     document.getElementById('main').style.marginLeft = '250px';
