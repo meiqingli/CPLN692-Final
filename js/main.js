@@ -22,7 +22,7 @@ $(() => {
 
   // Mapbox map setup
   mapboxgl.accessToken = 'pk.eyJ1IjoibWVpcWluZ2xpIiwiYSI6ImNqZ2l2MHRscjAweTIyeHA2Nm4zZGVyMzQifQ.IaIhKeNNWzmjPixFyA8-Rw';
-  const map = new mapboxgl.Map({
+  var map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/meiqingli/cjgiwyhim001x2smxyd2xcn67',
     center: [-122.4576403, 37.7576793],
@@ -31,8 +31,8 @@ $(() => {
 
   // add layers when map is ready
   map.on('load', async function () {
-    const cmpData = await doAjax(cmpUrl);
-    const roadsData = await doAjax(roadsUrl)
+    var cmpData = await doAjax(cmpUrl);
+    var roadsData = await doAjax(roadsUrl)
 
     map.addLayer({
       id: 'SFroads',
@@ -64,31 +64,108 @@ $(() => {
       },
       paint: {
         'line-color': '#888',
-        'line-width': 5
+        'line-width': 3
       }
+
+    });
+
+    //add popup of CMP names
+    var popup = new mapboxgl.Popup();
+    map.on('mousemove', function(e) {
+      var features = map.queryRenderedFeatures(e.point, { layers: ['CMProads'] });
+      if (!features.length) {
+        popup.remove();
+        return;
+      }
+      var feature = features[0];
+
+      popup.setLngLat(feature.geometry.coordinates[0])
+      .setHTML(feature.properties.cmp_name)
+      .addTo(map);
+
+      map.getCanvas().style.cursor = features.length ? 'pointer' : '';
     });
   });
 
-  // var Stamen_TonerLite = L.tileLayer('http://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}.png', {
-  //   attribution: 'Map tiles by <a href=' '>Stamen Design</a >, <a href='http://creativecommons.org/licenses/by/3.0'>CC BY 3.0</a > &mdash; Map data &copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a >',
-  //   subdomains: 'abcd',
-  //   minZoom: 0,
-  //   maxZoom: 20,
-  //   ext: 'png'
-  // }).addTo(map);
+  //filter CMP segments
+  var myStyle = function(feature) {
+  if (feature.properties.cls_hcm00 == "1")
+  {return {color: '#8DD3C7'};}
+  else if (feature.properties.cls_hcm00 == "2")
+  {return {color: '#FFFFB3'};}
+  else if (feature.properties.cls_hcm00 == "3")
+  {return {color: '#BEBADA'};}
+  else if (feature.properties.cls_hcm00 == "4")
+  {return {color: '#FB8072'};}
+  else if (feature.properties.cls_hcm00 == "Fwy")
+  {return {color: '#80B1D3'};}
+};
 
-  // Add Mapbox layer to map
-  // map.on('load', function() {
-  //   map.addLayer({
-  //     id: 'terrain-data',
-  //     type: 'line',
-  //     source: {
-  //       type: 'vector',
-  //       url: 'mapbox://mapbox.mapbox-terrain-v2'
-  //     },
-  //     'source-layer': 'contour'
-  //   });
-  // });
+// var showResults = function() {
+//   $('#intro').hide();
+//   $('#results').show();
+// };
+
+var Filter = function(feature) {
+  return true;};
+
+var Filter1 = function(feature) {
+  if (feature.properties.cls_hcm00 == "1"){return true;}
+  else {return false;}
+};
+
+var Filter2 = function(feature) {
+  if (feature.properties.cls_hcm00 == "2"){return true;}
+  else {return false;}
+};
+
+var Filter3 = function(feature) {
+  if (feature.properties.cls_hcm00 == "3"){return true;}
+  else {return false;}
+};
+
+var Filter4 = function(feature) {
+  if (feature.properties.cls_hcm00 == "4"){return true;}
+  else {return false;}
+};
+
+var freewayFilter = function(feature) {
+  if (feature.properties.cls_hcm00 == "Fwy"){return true;}
+  else {return false;}
+};
+
+var myFilter = Filter;
+
+$(document).ready(function() {
+  $.ajax(cmpUrl).done(function(data) {
+    var parsedData = JSON.parse(data);
+    featureGroup = L.geoJson(parsedData, {
+      style: myStyle,
+      filter: myFilter,
+    }).addTo(map);
+  });
+});
+
+$('HighSpeed').click(function(event){
+map.removeLayer(featureGroup);
+  myFilter = Filter1;
+});
+
+$('Suburban').click(function(event){
+  myFilter = Filter2;
+});
+
+$('Intermediate').click(function(event){
+  myFilter = Filter3;
+});
+
+$('Urban').click(function(event){
+  myFilter = Filter4;
+});
+
+$('Freeway').click(function(event){
+  myFilter = freewayFilter;
+});
 
   /* Set the width of the side navigation to 250px and the left margin of the page content to 250px and add a black background color to body */
   function openNav() {
@@ -103,7 +180,6 @@ $(() => {
     document.getElementById('main').style.marginLeft = '0';
     document.body.style.backgroundColor = 'white';
   }
-
 
 
   // var cartoUserName = 'meiqingli';
