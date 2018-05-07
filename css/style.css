@@ -4,6 +4,9 @@ body {
     font-family: 'Nunito Sans', sans-serif;
 }
 
+h2 {
+    font-size: 16px;
+}
 #map {
     position: absolute;
     right: 0px;
@@ -30,6 +33,72 @@ body {
     color: white;
 }
 
+#menu {
+    background: #000000;
+    position: absolute;
+    z-index: 1;
+    left: 16px;
+    top: 290px;
+    border-radius: 3px;
+    width: 180px;
+    border: 1px solid rgba(0,0,0,0.4);
+}
+
+#menu a {
+    font-size: 12px;
+    color: #404040;
+    display: inline;
+    margin: 5px;
+    padding: 10px;
+    padding: 10px;
+    border-width: 10px;
+    border-width: #ffffff;
+    text-decoration: none;
+    /* border-bottom: 1px solid rgba(0,0,0,0.25); */
+    text-align: center;
+}
+
+#menu a:last-child {
+    border: none;
+}
+
+#menu a:hover {
+    background-color: #f8f8f8;
+    color: #404040;
+}
+
+#menu a.active {
+    background-color: #ffffff;
+    color: #000000;
+}
+
+#menu a.active:hover {
+    background: #ffffff;
+}
+
+.legend {
+    background-color: #fff;
+    border-radius: 3px;
+    bottom: 30px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.10);
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    padding: 10px;
+    position: absolute;
+    right: 10px;
+    z-index: 1;
+}
+
+.legend h4 {
+    margin: 0 0 10px;
+}
+
+.legend div span {
+    border-radius: 50%;
+    display: inline-block;
+    height: 10px;
+    margin-right: 5px;
+    width: 10px;
+}
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {

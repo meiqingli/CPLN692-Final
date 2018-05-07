@@ -55,7 +55,7 @@ $(() => {
       },
       layout: {
         'line-join': 'round',
-        'line-cap': 'round'
+        'line-cap': 'round',
       },
       paint: {
         'line-color': '#888',
@@ -80,8 +80,6 @@ $(() => {
       }
     });
 
-
-    // examples to filter the features and add source -> add layer
     // filter the features
     var HighSpeed = cmpData.features.filter(item => item.properties.cls_hcm00 === '1');
     var Suburban = cmpData.features.filter(item => item.properties.cls_hcm00 === '2');
@@ -105,7 +103,8 @@ $(() => {
       source: 'HighSpeed',
       layout: {
         'line-join': 'round',
-        'line-cap': 'round'
+        'line-cap': 'round',
+        'visibility': 'visible'
       },
       paint: {
         'line-color': '#8DD3C7',
@@ -129,7 +128,8 @@ $(() => {
       source: 'Suburban',
       layout: {
         'line-join': 'round',
-        'line-cap': 'round'
+        'line-cap': 'round',
+        'visibility': 'visible'
       },
       paint: {
         'line-color': '#ffffb3',
@@ -153,7 +153,8 @@ $(() => {
       source: 'Intermediate',
       layout: {
         'line-join': 'round',
-        'line-cap': 'round'
+        'line-cap': 'round',
+        'visibility': 'visible'
       },
       paint: {
         'line-color': '#bebada',
@@ -177,7 +178,8 @@ $(() => {
       source: 'Urban',
       layout: {
         'line-join': 'round',
-        'line-cap': 'round'
+        'line-cap': 'round',
+        'visibility': 'visible'
       },
       paint: {
         'line-color': '#fb8072',
@@ -201,13 +203,45 @@ $(() => {
       source: 'Freeway',
       layout: {
         'line-join': 'round',
-        'line-cap': 'round'
+        'line-cap': 'round',
+        'visibility': 'visible'
       },
       paint: {
         'line-color': '#80b1d3',
         'line-width': 3
       }
     });
+
+    var toggleableLayerIds = [ 'HighSpeed', 'Suburban','Intermediate','Urban','Freeway' ];
+
+    for (var i = 0; i < toggleableLayerIds.length; i++) {
+      var id = toggleableLayerIds[i];
+
+      var link = document.createElement('a');
+      link.href = '#';
+      link.className = 'active';
+      link.textContent = id;
+
+      link.onclick = function (e) {
+        var clickedLayer = this.textContent;
+        e.preventDefault();
+        e.stopPropagation();
+
+        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+        if (visibility === 'visible') {
+            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+            this.className = '';
+        } else {
+            this.className = 'active';
+            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+        }
+    };
+
+    var layers = document.getElementById('menu');
+    layers.appendChild(link);
+    }
+
 
     //add popup of CMP names
     var popup = new mapboxgl.Popup();
@@ -233,178 +267,178 @@ $(() => {
     //   $('#results').show();
     // };
 
-    $('#HighSpeed').click(function (event) {
-      map.removeLayer('HighSpeed');
-      map.removeLayer('Suburban');
-      map.removeLayer('Intermediate');
-      map.removeLayer('Urban');
-      map.removeLayer('Freeway');
-      map.addLayer({
-        id: 'HighSpeed',
-        type: 'line',
-        source: 'HighSpeed',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': '#8DD3C7',
-          'line-width': 3
-        }
-      });
-    });
-
-    $('#Suburban').click(function (event) {
-      map.removeLayer('HighSpeed');
-      map.removeLayer('Suburban');
-      map.removeLayer('Intermediate');
-      map.removeLayer('Urban');
-      map.removeLayer('Freeway');
-      map.addLayer({
-        id: 'Suburban',
-        type: 'line',
-        source: 'Suburban',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': '#ffffb3',
-          'line-width': 3
-        }
-      });
-    });
-
-    $('#Intermediate').click(function (event) {
-      map.removeLayer('HighSpeed');
-      map.removeLayer('Suburban');
-      map.removeLayer('Intermediate');
-      map.removeLayer('Urban');
-      map.removeLayer('Freeway');
-      map.addLayer({
-        id: 'Intermediate',
-        type: 'line',
-        source: 'Intermediate',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': '#bebada',
-          'line-width': 3
-        }
-      });
-    });
-
-    $('#Urban').click(function (event) {
-      map.removeLayer('HighSpeed');
-      map.removeLayer('Suburban');
-      map.removeLayer('Intermediate');
-      map.removeLayer('Urban');
-      map.removeLayer('Freeway');
-      map.addLayer({
-        id: 'Urban',
-        type: 'line',
-        source: 'Urban',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': '#fb8072',
-          'line-width': 3
-        }
-      });
-    });
-
-    $('#Freeway').click(function (event) {
-      map.removeLayer('HighSpeed');
-      map.removeLayer('Suburban');
-      map.removeLayer('Intermediate');
-      map.removeLayer('Urban');
-      map.removeLayer('Freeway');
-      map.addLayer({
-        id: 'Freeway',
-        type: 'line',
-        source: 'Freeway',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': '#80b1d3',
-          'line-width': 3
-        }
-      });
-    });
-
-    $('#All').click(function (event) {
-      map.addLayer({
-        id: 'HighSpeed',
-        type: 'line',
-        source: 'HighSpeed',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': '#8DD3C7',
-          'line-width': 3
-        }
-    });
-      map.addLayer({
-        id: 'Suburban',
-        type: 'line',
-        source: 'Suburban',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': '#ffffb3',
-          'line-width': 3
-        }
-    });
-      map.addLayer({
-        id: 'Intermediate',
-        type: 'line',
-        source: 'Intermediate',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': '#bebada',
-          'line-width': 3
-        }
-    });
-      map.addLayer({
-        id: 'Urban',
-        type: 'line',
-        source: 'Urban',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': '#fb8072',
-          'line-width': 3
-        }
-    });
-      map.addLayer({
-        id: 'Freeway',
-        type: 'line',
-        source: 'Freeway',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round'
-        },
-        paint: {
-          'line-color': '#80b1d3',
-          'line-width': 3
-        }
-      });
-    });
+    // $('#HighSpeed').click(function (event) {
+    //   map.removeLayer('HighSpeed');
+    //   map.removeLayer('Suburban');
+    //   map.removeLayer('Intermediate');
+    //   map.removeLayer('Urban');
+    //   map.removeLayer('Freeway');
+    //   map.addLayer({
+    //     id: 'HighSpeed',
+    //     type: 'line',
+    //     source: 'HighSpeed',
+    //     layout: {
+    //       'line-join': 'round',
+    //       'line-cap': 'round'
+    //     },
+    //     paint: {
+    //       'line-color': '#8DD3C7',
+    //       'line-width': 3
+    //     }
+    //   });
+    // });
+    //
+    // $('#Suburban').click(function (event) {
+    //   map.removeLayer('HighSpeed');
+    //   map.removeLayer('Suburban');
+    //   map.removeLayer('Intermediate');
+    //   map.removeLayer('Urban');
+    //   map.removeLayer('Freeway');
+    //   map.addLayer({
+    //     id: 'Suburban',
+    //     type: 'line',
+    //     source: 'Suburban',
+    //     layout: {
+    //       'line-join': 'round',
+    //       'line-cap': 'round'
+    //     },
+    //     paint: {
+    //       'line-color': '#ffffb3',
+    //       'line-width': 3
+    //     }
+    //   });
+    // });
+    //
+    // $('#Intermediate').click(function (event) {
+    //   map.removeLayer('HighSpeed');
+    //   map.removeLayer('Suburban');
+    //   map.removeLayer('Intermediate');
+    //   map.removeLayer('Urban');
+    //   map.removeLayer('Freeway');
+    //   map.addLayer({
+    //     id: 'Intermediate',
+    //     type: 'line',
+    //     source: 'Intermediate',
+    //     layout: {
+    //       'line-join': 'round',
+    //       'line-cap': 'round'
+    //     },
+    //     paint: {
+    //       'line-color': '#bebada',
+    //       'line-width': 3
+    //     }
+    //   });
+    // });
+    //
+    // $('#Urban').click(function (event) {
+    //   map.removeLayer('HighSpeed');
+    //   map.removeLayer('Suburban');
+    //   map.removeLayer('Intermediate');
+    //   map.removeLayer('Urban');
+    //   map.removeLayer('Freeway');
+    //   map.addLayer({
+    //     id: 'Urban',
+    //     type: 'line',
+    //     source: 'Urban',
+    //     layout: {
+    //       'line-join': 'round',
+    //       'line-cap': 'round'
+    //     },
+    //     paint: {
+    //       'line-color': '#fb8072',
+    //       'line-width': 3
+    //     }
+    //   });
+    // });
+    //
+    // $('#Freeway').click(function (event) {
+    //   map.removeLayer('HighSpeed');
+    //   map.removeLayer('Suburban');
+    //   map.removeLayer('Intermediate');
+    //   map.removeLayer('Urban');
+    //   map.removeLayer('Freeway');
+    //   map.addLayer({
+    //     id: 'Freeway',
+    //     type: 'line',
+    //     source: 'Freeway',
+    //     layout: {
+    //       'line-join': 'round',
+    //       'line-cap': 'round'
+    //     },
+    //     paint: {
+    //       'line-color': '#80b1d3',
+    //       'line-width': 3
+    //     }
+    //   });
+    // });
+    //
+    // $('#All').click(function (event) {
+    //   map.addLayer({
+    //     id: 'HighSpeed',
+    //     type: 'line',
+    //     source: 'HighSpeed',
+    //     layout: {
+    //       'line-join': 'round',
+    //       'line-cap': 'round'
+    //     },
+    //     paint: {
+    //       'line-color': '#8DD3C7',
+    //       'line-width': 3
+    //     }
+    // });
+    //   map.addLayer({
+    //     id: 'Suburban',
+    //     type: 'line',
+    //     source: 'Suburban',
+    //     layout: {
+    //       'line-join': 'round',
+    //       'line-cap': 'round'
+    //     },
+    //     paint: {
+    //       'line-color': '#ffffb3',
+    //       'line-width': 3
+    //     }
+    // });
+    //   map.addLayer({
+    //     id: 'Intermediate',
+    //     type: 'line',
+    //     source: 'Intermediate',
+    //     layout: {
+    //       'line-join': 'round',
+    //       'line-cap': 'round'
+    //     },
+    //     paint: {
+    //       'line-color': '#bebada',
+    //       'line-width': 3
+    //     }
+    // });
+    //   map.addLayer({
+    //     id: 'Urban',
+    //     type: 'line',
+    //     source: 'Urban',
+    //     layout: {
+    //       'line-join': 'round',
+    //       'line-cap': 'round'
+    //     },
+    //     paint: {
+    //       'line-color': '#fb8072',
+    //       'line-width': 3
+    //     }
+    // });
+    //   map.addLayer({
+    //     id: 'Freeway',
+    //     type: 'line',
+    //     source: 'Freeway',
+    //     layout: {
+    //       'line-join': 'round',
+    //       'line-cap': 'round'
+    //     },
+    //     paint: {
+    //       'line-color': '#80b1d3',
+    //       'line-width': 3
+    //     }
+    //   });
+    // });
 
 
     // var cartoUserName = 'meiqingli';
