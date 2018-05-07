@@ -4,13 +4,14 @@ var roadsUrl = 'https://gist.githubusercontent.com/meiqingli/29972740342cff8c3ab
 // var cmpUrl = 'https://gist.githubusercontent.com/meiqingli/d9de32bd2ffa2194303f731e67d2cd9d/raw/cee8a44a6c6d29e7aa04f3bc851a289c0580e9ef/SFCMP';
 var cmpUrl = 'https://gist.githubusercontent.com/meiqingli/c01cc8e6c1ef8185e4cd52435cd95a97/raw/e1d556dd0194d96c7144b39627bd0675f0ce3802/CMP_data'
 
-// //filter CMP segments
+//get segment colors based on LOS
 function getCMPColor(feature) {
-  if (feature.properties.cls_hcm00_y === 1) { return { color: '#8DD3C7' }; }
-  else if (feature.properties.cls_hcm00_y === 2) { return { color: '#FFFFB3' }; }
-  else if (feature.properties.cls_hcm00_y === 3) { return { color: '#BEBADA' }; }
-  else if (feature.properties.cls_hcm00_y === 4) { return { color: '#FB8072' }; }
-  else if (feature.properties.cls_hcm00_y === null) { return { color: '#80B1D3' }; }
+  if (feature.properties.los_hcm85 === 'A') { return { color: '#66ff33' }; }
+  else if (feature.properties.los_hcm85 === 'B') { return { color: '#99ff33' }; }
+  else if (feature.properties.los_hcm85 === 'C') { return { color: '#ccff33' }; }
+  else if (feature.properties.los_hcm85 === 'D') { return { color: '#ffff00' }; }
+  else if (feature.properties.los_hcm85 === 'E') { return { color: '#ff9900' }; }
+  else if (feature.properties.los_hcm85 === 'E') { return { color: '#cc3300' }; }
 }
 
 
@@ -82,6 +83,16 @@ $(() => {
     var Intermediate = cmpData.features.filter(item => item.properties.cls_hcm00_y === 3);
     var Urban = cmpData.features.filter(item => item.properties.cls_hcm00_y === 4);
     var Freeway = cmpData.features.filter(item => item.properties.cls_hcm00_y === null);
+    var time_AM = cmpData.features.filter(item => item.properties.period === 'AM');
+    var time_PM = cmpData.features.filter(item => item.properties.period === 'PM');
+    var los_a = cmpData.features.filter(item => item.properties.los_hcm85 === 'A');
+    var los_b = cmpData.features.filter(item => item.properties.los_hcm85 === 'B');
+    var los_c = cmpData.features.filter(item => item.properties.los_hcm85 === 'C');
+    var los_d = cmpData.features.filter(item => item.properties.los_hcm85 === 'D');
+    var los_e = cmpData.features.filter(item => item.properties.los_hcm85 === 'E');
+    var los_f = cmpData.features.filter(item => item.properties.los_hcm85 === 'F');
+
+
 
     // add source
     map.addSource('HighSpeed', {

@@ -25,12 +25,13 @@
       <p>Traffic congestion is widely perceived as outpacing the ability of the traditional transportation planning process to provide solutions.
         In San Francisco, with its highintensity land uses and extensive transit network, traffic congestion poses a different problem than in lower-density counties,
         challenging conventional interpretations of the nature of the congestion problem.</p>
-      <h2>Select road type to hide or display:</h2>
-      <nav id="menu"></nav>
       <br></br>
-      <h2>Select time period:</h2>
-      <button type="button" class="btn btn-default" onclick="location.href='AM.html'">AM</button>
-      <button type="button" class="btn btn-default" onclick="location.href='PM.html'">PM</button>
+      <h2>Select measure of congestion:</h2>
+      <div id="menu2">
+        <a href="#">AM</a>
+        <a href="#">PM</a>
+    </div>
+    <button type="button" class="btn btn-default" onclick="location.href='index.html'">Back to Street Type</button>
     </div>
     <!-- Map -->
     <div id = "map" class="map"></div>
@@ -54,6 +55,6 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
     <script src='https://api.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
-    <script src="js/main.js"></script>
+    <script src="js/timeslider.js"></script>
   </body>
 </html>

@@ -54,7 +54,6 @@ h2 {
     border-width: 10px;
     border-width: #ffffff;
     text-decoration: none;
-    /* border-bottom: 1px solid rgba(0,0,0,0.25); */
     text-align: center;
 }
 
@@ -64,7 +63,7 @@ h2 {
 
 #menu a:hover {
     background-color: #f8f8f8;
-    color: #404040;
+    color: #818181;
 }
 
 #menu a.active {
@@ -98,10 +97,4 @@ h2 {
     height: 10px;
     margin-right: 5px;
     width: 10px;
-}
-
-/* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
-    transition: margin-left .5s;
-    padding: 20px;
 }
