@@ -9,7 +9,7 @@ function getCMPColor(feature) {
   else if (feature.properties.cls_hcm00_y === 2) { return { color: '#FFFFB3' }; }
   else if (feature.properties.cls_hcm00_y === 3) { return { color: '#BEBADA' }; }
   else if (feature.properties.cls_hcm00_y === 4) { return { color: '#FB8072' }; }
-  else if (feature.properties.cls_hcm00_y === 'Fwy') { return { color: '#80B1D3' }; }
+  else if (feature.properties.cls_hcm00_y === null) { return { color: '#80B1D3' }; }
 }
 
 
@@ -81,11 +81,11 @@ $(() => {
     });
 
     // filter the features
-    var HighSpeed = cmpData.features.filter(item => item.properties.cls_hcm00_y === '1');
-    var Suburban = cmpData.features.filter(item => item.properties.cls_hcm00_y === '2');
-    var Intermediate = cmpData.features.filter(item => item.properties.cls_hcm00_y === '3');
-    var Urban = cmpData.features.filter(item => item.properties.cls_hcm00_y === '4');
-    var Freeway = cmpData.features.filter(item => item.properties.cls_hcm00_y === 'Fwy');
+    var HighSpeed = cmpData.features.filter(item => item.properties.cls_hcm00_y === 1);
+    var Suburban = cmpData.features.filter(item => item.properties.cls_hcm00_y === 2);
+    var Intermediate = cmpData.features.filter(item => item.properties.cls_hcm00_y === 3);
+    var Urban = cmpData.features.filter(item => item.properties.cls_hcm00_y === 4);
+    var Freeway = cmpData.features.filter(item => item.properties.cls_hcm00_y === null);
 
     // add source
     map.addSource('HighSpeed', {
