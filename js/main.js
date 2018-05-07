@@ -2,8 +2,8 @@
 // constants
 var roadsUrl = 'https://gist.githubusercontent.com/meiqingli/29972740342cff8c3ab514750d3ab1fd/raw/382fbc90bed5a7e087b7e9d76c766960b5e52df5/SFroads';
 var cmpUrl = 'https://gist.githubusercontent.com/meiqingli/d9de32bd2ffa2194303f731e67d2cd9d/raw/cee8a44a6c6d29e7aa04f3bc851a289c0580e9ef/SFCMP';
-
-//filter CMP segments
+// var cmpUrl = 'https://gist.githubusercontent.com/meiqingli/c01cc8e6c1ef8185e4cd52435cd95a97/raw/e1d556dd0194d96c7144b39627bd0675f0ce3802/CMP_data'
+// //filter CMP segments
 function getCMPColor(feature) {
   if (feature.properties.cls_hcm00 === '1') { return { color: '#8DD3C7' }; }
   else if (feature.properties.cls_hcm00 === '2') { return { color: '#FFFFB3' }; }
