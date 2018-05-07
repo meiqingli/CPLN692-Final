@@ -92,8 +92,6 @@ $(() => {
     var los_e = cmpData.features.filter(item => item.properties.los_hcm85 === 'E');
     var los_f = cmpData.features.filter(item => item.properties.los_hcm85 === 'F');
 
-
-
     // add source
     map.addSource('HighSpeed', {
       type: 'geojson',
