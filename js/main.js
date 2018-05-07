@@ -1,15 +1,15 @@
 /* global $, mapboxgl */
 // constants
 var roadsUrl = 'https://gist.githubusercontent.com/meiqingli/29972740342cff8c3ab514750d3ab1fd/raw/382fbc90bed5a7e087b7e9d76c766960b5e52df5/SFroads';
-var cmpUrl = 'https://gist.githubusercontent.com/meiqingli/d9de32bd2ffa2194303f731e67d2cd9d/raw/cee8a44a6c6d29e7aa04f3bc851a289c0580e9ef/SFCMP';
-// var cmpUrl = 'https://gist.githubusercontent.com/meiqingli/c01cc8e6c1ef8185e4cd52435cd95a97/raw/e1d556dd0194d96c7144b39627bd0675f0ce3802/CMP_data'
+// var cmpUrl = 'https://gist.githubusercontent.com/meiqingli/d9de32bd2ffa2194303f731e67d2cd9d/raw/cee8a44a6c6d29e7aa04f3bc851a289c0580e9ef/SFCMP';
+var cmpUrl = 'https://gist.githubusercontent.com/meiqingli/c01cc8e6c1ef8185e4cd52435cd95a97/raw/e1d556dd0194d96c7144b39627bd0675f0ce3802/CMP_data'
 // //filter CMP segments
 function getCMPColor(feature) {
-  if (feature.properties.cls_hcm00 === '1') { return { color: '#8DD3C7' }; }
-  else if (feature.properties.cls_hcm00 === '2') { return { color: '#FFFFB3' }; }
-  else if (feature.properties.cls_hcm00 === '3') { return { color: '#BEBADA' }; }
-  else if (feature.properties.cls_hcm00 === '4') { return { color: '#FB8072' }; }
-  else if (feature.properties.cls_hcm00 === 'Fwy') { return { color: '#80B1D3' }; }
+  if (feature.properties.cls_hcm00_y === 1) { return { color: '#8DD3C7' }; }
+  else if (feature.properties.cls_hcm00_y === 2) { return { color: '#FFFFB3' }; }
+  else if (feature.properties.cls_hcm00_y === 3) { return { color: '#BEBADA' }; }
+  else if (feature.properties.cls_hcm00_y === 4) { return { color: '#FB8072' }; }
+  else if (feature.properties.cls_hcm00_y === 'Fwy') { return { color: '#80B1D3' }; }
 }
 
 
@@ -81,11 +81,11 @@ $(() => {
     });
 
     // filter the features
-    var HighSpeed = cmpData.features.filter(item => item.properties.cls_hcm00 === '1');
-    var Suburban = cmpData.features.filter(item => item.properties.cls_hcm00 === '2');
-    var Intermediate = cmpData.features.filter(item => item.properties.cls_hcm00 === '3');
-    var Urban = cmpData.features.filter(item => item.properties.cls_hcm00 === '4');
-    var Freeway = cmpData.features.filter(item => item.properties.cls_hcm00 === 'Fwy');
+    var HighSpeed = cmpData.features.filter(item => item.properties.cls_hcm00_y === '1');
+    var Suburban = cmpData.features.filter(item => item.properties.cls_hcm00_y === '2');
+    var Intermediate = cmpData.features.filter(item => item.properties.cls_hcm00_y === '3');
+    var Urban = cmpData.features.filter(item => item.properties.cls_hcm00_y === '4');
+    var Freeway = cmpData.features.filter(item => item.properties.cls_hcm00_y === 'Fwy');
 
     // add source
     map.addSource('HighSpeed', {
@@ -453,32 +453,32 @@ $(() => {
     //     {
     //       sql: 'SELECT * FROM road',
     //       cartocss: '#road { line-width: 1;line-color: #717975;line-opacity: 1;}',
-    //       interactivity: ['cls_hcm00', 'direction']
+    //       interactivity: ['cls_hcm00_y', 'direction']
     //    },
     //     {
-    //        sql: 'SELECT * FROM road where cls_hcm00 = 'Fwy'',
+    //        sql: 'SELECT * FROM road where cls_hcm00_y = 'Fwy'',
     //        cartocss: '#road {line-width: 2;line-color: #80b1d3;line-opacity: 1;}',
-    //        interactivity: ['cls_hcm00', 'direction']
+    //        interactivity: ['cls_hcm00_y', 'direction']
     //     },
     //     {
-    //        sql: 'SELECT * FROM road where cls_hcm00 = '1'',
+    //        sql: 'SELECT * FROM road where cls_hcm00_y = '1'',
     //        cartocss: '#road {line-width: 2;line-color: #8dd3c7;line-opacity: 1;}',
-    //        interactivity: ['cls_hcm00', 'direction']
+    //        interactivity: ['cls_hcm00_y', 'direction']
     //     },
     //     {
-    //        sql: 'SELECT * FROM road where cls_hcm00 = '2'',
+    //        sql: 'SELECT * FROM road where cls_hcm00_y = '2'',
     //        cartocss: '#road {line-width: 2;line-color: #ffffb3;line-opacity: 1;}',
-    //        interactivity: ['cls_hcm00', 'direction']
+    //        interactivity: ['cls_hcm00_y', 'direction']
     //     },
     //     {
-    //        sql: 'SELECT * FROM road where cls_hcm00 = '3'',
+    //        sql: 'SELECT * FROM road where cls_hcm00_y = '3'',
     //        cartocss: '#road {line-width: 2;line-color: #bebada;line-opacity: 1;}',
-    //        interactivity: ['cls_hcm00', 'direction']
+    //        interactivity: ['cls_hcm00_y', 'direction']
     //     },
     //     {
-    //        sql: 'SELECT * FROM road where cls_hcm00 = '4'',
+    //        sql: 'SELECT * FROM road where cls_hcm00_y = '4'',
     //        cartocss: '#road {line-width: 2;line-color: #fb8072;line-opacity: 1;}',
-    //        interactivity: ['cls_hcm00', 'direction']
+    //        interactivity: ['cls_hcm00_y', 'direction']
     //     },
     //   ]
     //
