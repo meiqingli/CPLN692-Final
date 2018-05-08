@@ -4,17 +4,44 @@ var roadsUrl = 'https://gist.githubusercontent.com/meiqingli/29972740342cff8c3ab
 // var cmpUrl = 'https://gist.githubusercontent.com/meiqingli/d9de32bd2ffa2194303f731e67d2cd9d/raw/cee8a44a6c6d29e7aa04f3bc851a289c0580e9ef/SFCMP';
 var cmpUrl = 'https://gist.githubusercontent.com/meiqingli/c01cc8e6c1ef8185e4cd52435cd95a97/raw/e1d556dd0194d96c7144b39627bd0675f0ce3802/CMP_data'
 
-//get segment colors based on LOS
-function getCMPColor(feature) {
-  if (feature.properties.los_hcm85 === 'A') { return { color: '#66ff33' }; }
-  else if (feature.properties.los_hcm85 === 'B') { return { color: '#99ff33' }; }
-  else if (feature.properties.los_hcm85 === 'C') { return { color: '#ccff33' }; }
-  else if (feature.properties.los_hcm85 === 'D') { return { color: '#ffff00' }; }
-  else if (feature.properties.los_hcm85 === 'E') { return { color: '#ff9900' }; }
-  else if (feature.properties.los_hcm85 === 'E') { return { color: '#cc3300' }; }
-}
+// var years = [
+//   '1991',
+//   '1993',
+//   '1995',
+//   '1997',
+//   '1999',
+//   '2001',
+//   '2004',
+//   '2006',
+//   '2007',
+//   '2009',
+//   '2011',
+//   '2013',
+//   '2015',
+//   '2017'
+// ];
+
+var years = [
+  1991,
+  1993,
+  1995,
+  1997,
+  1999,
+  2001,
+  2004,
+  2006,
+  2007,
+  2009,
+  2011,
+  2013,
+  2015,
+  2017
+];
 
 
+
+
+// ajax wrapper
 async function doAjax(url) {
   let result;
   try {
@@ -38,37 +65,14 @@ $(() => {
     zoom: 11
   });
 
-  var years = [
-    '1991',
-    '1993',
-    '1995',
-    '1997',
-    '1999',
-    '2001',
-    '2004',
-    '2006',
-    '2007',
-    '2009',
-    '2011',
-    '2013',
-    '2015',
-    '2017'
-];
-
-function filterBy(year) {
-
-    var filters = ['==', 'year', years];
-    // map.setFilter('los-a-AM', filters);
-
-    // Set the label to the month
-    document.getElementById('year').textContent = years[year];
-}
-
   // add layers when map is ready
   map.on('load', async function () {
+    // for debug
+    window.mapping = map;
     var cmpData = await doAjax(cmpUrl);
     var roadsData = await doAjax(roadsUrl);
 
+    
     map.addLayer({
       id: 'SFroads',
       type: 'line',
@@ -138,7 +142,7 @@ function filterBy(year) {
       paint: {
         'line-color': '#66ff33',
         'line-width': 2
-      }
+      },
     });
 
     map.addSource('los_b',{
@@ -149,20 +153,20 @@ function filterBy(year) {
       }
     });
 
-    map.addLayer({
-      id: 'los-b-AM',
-      type: 'line',
-      source: 'los_b',
-      layout: {
-        'line-join': 'round',
-        'line-cap': 'round',
-        'visibility': 'visible'
-      },
-      paint: {
-        'line-color': '#99ff33',
-        'line-width': 2
-      }
-    });
+    // map.addLayer({
+    //   id: 'los-b-AM',
+    //   type: 'line',
+    //   source: 'los_b',
+    //   layout: {
+    //     'line-join': 'round',
+    //     'line-cap': 'round',
+    //     'visibility': 'visible'
+    //   },
+    //   paint: {
+    //     'line-color': '#99ff33',
+    //     'line-width': 2
+    //   }
+    // });
 
     map.addSource('los_c',{
       type:'geojson',
@@ -172,30 +176,38 @@ function filterBy(year) {
       }
     });
 
-    map.addLayer({
-      id: 'los-c-AM',
-      type: 'line',
-      source: 'los_c',
-      layout: {
-        'line-join': 'round',
-        'line-cap': 'round',
-        'visibility': 'visible'
-      },
-      paint: {
-        'line-color': '#ccff33',
-        'line-width': 2
-      }
-    });
+    // map.addLayer({
+    //   id: 'los-c-AM',
+    //   type: 'line',
+    //   source: 'los_c',
+    //   layout: {
+    //     'line-join': 'round',
+    //     'line-cap': 'round',
+    //     'visibility': 'visible'
+    //   },
+    //   paint: {
+    //     'line-color': '#ccff33',
+    //     'line-width': 2
+    //   }
+    // });
 
+    // map filter function
+    function filterBy(index) {
+      var filters = ['==', 'year', years[index]];
+      console.log(filters, 'check filter')
+      map.setFilter('los-a-AM', filters);
+
+      // Set the label to the month
+      document.getElementById('year').textContent = years[index];
+    }
     // Set filter to the first year
     // 0 = 1991
     filterBy(0);
 
     document.getElementById('slider').addEventListener('input', function(e) {
-        var year = parseInt(e.target.value, 10);
-        console.log(year);
-        filterBy(year);
-      });
+      var index = parseInt(e.target.value, 10);
+      filterBy(index);
+    });
 
 
     // // add source
@@ -342,16 +354,16 @@ function filterBy(year) {
         var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
 
         if (visibility === 'visible') {
-            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-            this.className = '';
+          map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+          this.className = '';
         } else {
-            this.className = 'active';
-            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+          this.className = 'active';
+          map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
         }
-    };
+      };
 
-    var layers = document.getElementById('menu');
-    layers.appendChild(link);
+      var layers = document.getElementById('menu');
+      layers.appendChild(link);
     }
 
     //add popup of CMP names
