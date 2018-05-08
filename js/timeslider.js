@@ -58,7 +58,7 @@ $(() => {
 function filterBy(year) {
 
     var filters = ['==', 'year', year];
-    map.setFilter('los-segments-AM', filters);
+    map.setFilter('los-a-AM', filters);
 
     // Set the label to the month
     document.getElementById('year').textContent = years[year];
@@ -148,6 +148,7 @@ function filterBy(year) {
     document.getElementById('slider').addEventListener('input', function(e) {
         var year = parseInt(e.target.value, 10);
         filterBy(year);
+        console.log(year);
       });
 
 
