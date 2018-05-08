@@ -38,6 +38,32 @@ $(() => {
     zoom: 11
   });
 
+  var years = [
+    '1991',
+    '1993',
+    '1995',
+    '1997',
+    '1999',
+    '2001',
+    '2004',
+    '2006',
+    '2007',
+    '2009',
+    '2011',
+    '2013',
+    '2015',
+    '2017'
+];
+
+function filterBy(year) {
+
+    var filters = ['==', 'year', year];
+    map.setFilter('los-segments-AM', filters);
+
+    // Set the label to the month
+    document.getElementById('year').textContent = years[year];
+}
+
   // add layers when map is ready
   map.on('load', async function () {
     var cmpData = await doAjax(cmpUrl);
@@ -85,168 +111,204 @@ $(() => {
     var Freeway = cmpData.features.filter(item => item.properties.cls_hcm00_y === null);
     var time_AM = cmpData.features.filter(item => item.properties.period === 'AM');
     var time_PM = cmpData.features.filter(item => item.properties.period === 'PM');
-    var los_a = cmpData.features.filter(item => item.properties.los_hcm85 === 'A');
-    var los_b = cmpData.features.filter(item => item.properties.los_hcm85 === 'B');
-    var los_c = cmpData.features.filter(item => item.properties.los_hcm85 === 'C');
-    var los_d = cmpData.features.filter(item => item.properties.los_hcm85 === 'D');
-    var los_e = cmpData.features.filter(item => item.properties.los_hcm85 === 'E');
-    var los_f = cmpData.features.filter(item => item.properties.los_hcm85 === 'F');
+    var los_a = cmpData.features.filter(item => (item.properties.los_hcm85 === 'A') && (item.properties.period === 'AM'));
+    var los_b = cmpData.features.filter(item => (item.properties.los_hcm85 === 'B') && (item.properties.period === 'AM'));
+    var los_c = mpData.features.filter(item => (item.properties.los_hcm85 === 'C') && (item.properties.period === 'AM'));
+    var los_d = mpData.features.filter(item => (item.properties.los_hcm85 === 'D') && (item.properties.period === 'AM'));
+    var los_e = mpData.features.filter(item => (item.properties.los_hcm85 === 'E') && (item.properties.period === 'AM'));
+    var los_f = mpData.features.filter(item => (item.properties.los_hcm85 === 'F') && (item.properties.period === 'AM'));
 
-    // add source
-    map.addSource('HighSpeed', {
-      type: 'geojson',
+    map.addSource('los_a',{
+      type:'geojson',
       data: {
         type: 'FeatureCollection',
-        features: HighSpeed,
-      },
+        features: los_a,
+      }
     });
 
-    // add layer
     map.addLayer({
-      id: 'HighSpeed',
+      id: 'los-a-AM',
       type: 'line',
-      source: 'HighSpeed',
+      source: 'los_a',
       layout: {
         'line-join': 'round',
         'line-cap': 'round',
         'visibility': 'visible'
       },
       paint: {
-        'line-color': '#8DD3C7',
+        'line-color': '#66ff33',
         'line-width': 2
       }
     });
 
-    // add source
-    map.addSource('Suburban', {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: Suburban,
-      },
+    // Set filter to the first year
+    // 0 = 1991
+    filterBy(0);
+
+    document.getElementById('slider').addEventListener('input', function(e) {
+        var year = parseInt(e.target.value, 10);
+        filterBy(year);
+      });
     });
+});    
 
-    // add layer
-    map.addLayer({
-      id: 'Suburban',
-      type: 'line',
-      source: 'Suburban',
-      layout: {
-        'line-join': 'round',
-        'line-cap': 'round',
-        'visibility': 'visible'
-      },
-      paint: {
-        'line-color': '#ffffb3',
-        'line-width': 2
-      }
-    });
 
-    // add source
-    map.addSource('Intermediate', {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: Intermediate,
-      },
-    });
 
-    // add layer
-    map.addLayer({
-      id: 'Intermediate',
-      type: 'line',
-      source: 'Intermediate',
-      layout: {
-        'line-join': 'round',
-        'line-cap': 'round',
-        'visibility': 'visible'
-      },
-      paint: {
-        'line-color': '#bebada',
-        'line-width': 2
-      }
-    });
+    // // add source
+    // map.addSource('HighSpeed', {
+    //   type: 'geojson',
+    //   data: {
+    //     type: 'FeatureCollection',
+    //     features: HighSpeed,
+    //   },
+    // });
+    //
+    // // add layer
+    // map.addLayer({
+    //   id: 'HighSpeed',
+    //   type: 'line',
+    //   source: 'HighSpeed',
+    //   layout: {
+    //     'line-join': 'round',
+    //     'line-cap': 'round',
+    //     'visibility': 'visible'
+    //   },
+    //   paint: {
+    //     'line-color': '#8DD3C7',
+    //     'line-width': 2
+    //   }
+    // });
+    //
+    // // add source
+    // map.addSource('Suburban', {
+    //   type: 'geojson',
+    //   data: {
+    //     type: 'FeatureCollection',
+    //     features: Suburban,
+    //   },
+    // });
+    //
+    // // add layer
+    // map.addLayer({
+    //   id: 'Suburban',
+    //   type: 'line',
+    //   source: 'Suburban',
+    //   layout: {
+    //     'line-join': 'round',
+    //     'line-cap': 'round',
+    //     'visibility': 'visible'
+    //   },
+    //   paint: {
+    //     'line-color': '#ffffb3',
+    //     'line-width': 2
+    //   }
+    // });
+    //
+    // // add source
+    // map.addSource('Intermediate', {
+    //   type: 'geojson',
+    //   data: {
+    //     type: 'FeatureCollection',
+    //     features: Intermediate,
+    //   },
+    // });
+    //
+    // // add layer
+    // map.addLayer({
+    //   id: 'Intermediate',
+    //   type: 'line',
+    //   source: 'Intermediate',
+    //   layout: {
+    //     'line-join': 'round',
+    //     'line-cap': 'round',
+    //     'visibility': 'visible'
+    //   },
+    //   paint: {
+    //     'line-color': '#bebada',
+    //     'line-width': 2
+    //   }
+    // });
+    //
+    // // add source
+    // map.addSource('Urban', {
+    //   type: 'geojson',
+    //   data: {
+    //     type: 'FeatureCollection',
+    //     features: Urban,
+    //   },
+    // });
+    //
+    // // add layer
+    // map.addLayer({
+    //   id: 'Urban',
+    //   type: 'line',
+    //   source: 'Urban',
+    //   layout: {
+    //     'line-join': 'round',
+    //     'line-cap': 'round',
+    //     'visibility': 'visible'
+    //   },
+    //   paint: {
+    //     'line-color': '#fb8072',
+    //     'line-width': 2
+    //   }
+    // });
+    //
+    // // add source
+    // map.addSource('Freeway', {
+    //   type: 'geojson',
+    //   data: {
+    //     type: 'FeatureCollection',
+    //     features: Freeway,
+    //   },
+    // });
+    //
+    // // add layer
+    // map.addLayer({
+    //   id: 'Freeway',
+    //   type: 'line',
+    //   source: 'Freeway',
+    //   layout: {
+    //     'line-join': 'round',
+    //     'line-cap': 'round',
+    //     'visibility': 'visible'
+    //   },
+    //   paint: {
+    //     'line-color': '#80b1d3',
+    //     'line-width': 2
+    //   }
+    // });
 
-    // add source
-    map.addSource('Urban', {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: Urban,
-      },
-    });
-
-    // add layer
-    map.addLayer({
-      id: 'Urban',
-      type: 'line',
-      source: 'Urban',
-      layout: {
-        'line-join': 'round',
-        'line-cap': 'round',
-        'visibility': 'visible'
-      },
-      paint: {
-        'line-color': '#fb8072',
-        'line-width': 2
-      }
-    });
-
-    // add source
-    map.addSource('Freeway', {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: Freeway,
-      },
-    });
-
-    // add layer
-    map.addLayer({
-      id: 'Freeway',
-      type: 'line',
-      source: 'Freeway',
-      layout: {
-        'line-join': 'round',
-        'line-cap': 'round',
-        'visibility': 'visible'
-      },
-      paint: {
-        'line-color': '#80b1d3',
-        'line-width': 2
-      }
-    });
-
-    //add street type menu
-    var toggleableLayerIds = [ 'HighSpeed', 'Suburban','Intermediate','Urban','Freeway' ];
-
-    for (var i = 0; i < toggleableLayerIds.length; i++) {
-      var id = toggleableLayerIds[i];
-
-      var link = document.createElement('a');
-      link.href = '#';
-      link.className = 'active';
-      link.textContent = id;
-
-      link.onclick = function (e) {
-        var clickedLayer = this.textContent;
-        e.preventDefault();
-        e.stopPropagation();
-
-        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-
-        if (visibility === 'visible') {
-            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-            this.className = '';
-        } else {
-            this.className = 'active';
-            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-        }
-    };
-
-    var layers = document.getElementById('menu');
-    layers.appendChild(link);
-    }
+    // //add street type menu
+    // var toggleableLayerIds = [ 'HighSpeed', 'Suburban','Intermediate','Urban','Freeway' ];
+    //
+    // for (var i = 0; i < toggleableLayerIds.length; i++) {
+    //   var id = toggleableLayerIds[i];
+    //
+    //   var link = document.createElement('a');
+    //   link.href = '#';
+    //   link.className = 'active';
+    //   link.textContent = id;
+    //
+    //   link.onclick = function (e) {
+    //     var clickedLayer = this.textContent;
+    //     e.preventDefault();
+    //     e.stopPropagation();
+    //
+    //     var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+    //
+    //     if (visibility === 'visible') {
+    //         map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+    //         this.className = '';
+    //     } else {
+    //         this.className = 'active';
+    //         map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+    //     }
+    // };
+    //
+    // var layers = document.getElementById('menu');
+    // layers.appendChild(link);
+    // }
 
     //add popup of CMP names
     var popup = new mapboxgl.Popup();

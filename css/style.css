@@ -7,6 +7,15 @@ body {
 h2 {
     font-size: 16px;
 }
+
+h3 {
+    font-size: 14px;
+}
+
+h4 {
+    font-size: 12px;
+}
+
 #map {
     position: absolute;
     right: 0px;
@@ -97,4 +106,38 @@ h2 {
     height: 10px;
     margin-right: 5px;
     width: 10px;
+}
+
+.map-overlay {
+    font: 12px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    position: absolute;
+    width: 18%;
+    height: 10px;
+    top: 30px;
+    left: 520px;
+    padding: 0px;
+}
+
+.map-overlay .map-overlay-inner {
+    background-color: #fff;
+    font:12px;
+    box-shadow:0 1px 2px rgba(0, 0, 0, 0.20);
+    border-radius: 3px;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.map-overlay h2 {
+    line-height: 18px;
+    display: block;
+    margin: 0 0 0px;
+}
+
+.map-overlay input {
+    background-color: transparent;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    margin: 0;
+    cursor: ew-resize;
 }
