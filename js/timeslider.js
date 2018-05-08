@@ -57,8 +57,8 @@ $(() => {
 
 function filterBy(year) {
 
-    var filters = ['==', 'year', year];
-    map.setFilter('los-a-AM', filters);
+    var filters = ['==', 'year', years];
+    // map.setFilter('los-a-AM', filters);
 
     // Set the label to the month
     document.getElementById('year').textContent = years[year];
@@ -141,14 +141,60 @@ function filterBy(year) {
       }
     });
 
+    map.addSource('los_b',{
+      type:'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: los_b,
+      }
+    });
+
+    map.addLayer({
+      id: 'los-b-AM',
+      type: 'line',
+      source: 'los_b',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+        'visibility': 'visible'
+      },
+      paint: {
+        'line-color': '#99ff33',
+        'line-width': 2
+      }
+    });
+
+    map.addSource('los_c',{
+      type:'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: los_c,
+      }
+    });
+
+    map.addLayer({
+      id: 'los-c-AM',
+      type: 'line',
+      source: 'los_c',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+        'visibility': 'visible'
+      },
+      paint: {
+        'line-color': '#ccff33',
+        'line-width': 2
+      }
+    });
+
     // Set filter to the first year
     // 0 = 1991
     filterBy(0);
 
     document.getElementById('slider').addEventListener('input', function(e) {
         var year = parseInt(e.target.value, 10);
-        filterBy(year);
         console.log(year);
+        filterBy(year);
       });
 
 
@@ -277,36 +323,36 @@ function filterBy(year) {
     //   }
     // });
 
-    // //add street type menu
-    // var toggleableLayerIds = [ 'HighSpeed', 'Suburban','Intermediate','Urban','Freeway' ];
-    //
-    // for (var i = 0; i < toggleableLayerIds.length; i++) {
-    //   var id = toggleableLayerIds[i];
-    //
-    //   var link = document.createElement('a');
-    //   link.href = '#';
-    //   link.className = 'active';
-    //   link.textContent = id;
-    //
-    //   link.onclick = function (e) {
-    //     var clickedLayer = this.textContent;
-    //     e.preventDefault();
-    //     e.stopPropagation();
-    //
-    //     var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
-    //
-    //     if (visibility === 'visible') {
-    //         map.setLayoutProperty(clickedLayer, 'visibility', 'none');
-    //         this.className = '';
-    //     } else {
-    //         this.className = 'active';
-    //         map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
-    //     }
-    // };
-    //
-    // var layers = document.getElementById('menu');
-    // layers.appendChild(link);
-    // }
+    //add street type menu
+    var toggleableLayerIds = [ 'HighSpeed', 'Suburban','Intermediate','Urban','Freeway' ];
+
+    for (var i = 0; i < toggleableLayerIds.length; i++) {
+      var id = toggleableLayerIds[i];
+
+      var link = document.createElement('a');
+      link.href = '#';
+      link.className = 'active';
+      link.textContent = id;
+
+      link.onclick = function (e) {
+        var clickedLayer = this.textContent;
+        e.preventDefault();
+        e.stopPropagation();
+
+        var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
+
+        if (visibility === 'visible') {
+            map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+            this.className = '';
+        } else {
+            this.className = 'active';
+            map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+        }
+    };
+
+    var layers = document.getElementById('menu');
+    layers.appendChild(link);
+    }
 
     //add popup of CMP names
     var popup = new mapboxgl.Popup();
