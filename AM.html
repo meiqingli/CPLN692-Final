@@ -17,19 +17,25 @@
   </head>
   <body>
 
-  <!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->
-  <div id="main">
     <!-- Sidebar -->
     <div class="sidebar">
       <h1>San Francisco Congestion Management Program Portal</h1>
       <p>Traffic congestion is widely perceived as outpacing the ability of the traditional transportation planning process to provide solutions.
         In San Francisco, with its highintensity land uses and extensive transit network, traffic congestion poses a different problem than in lower-density counties,
         challenging conventional interpretations of the nature of the congestion problem.</p>
+      <p>Level of service (LOS) is a qualitative measure used to relate the quality of traffic service. LOS is used to analyze highways by categorizing traffic flow
+          and assigning quality levels of traffic based on performance measure like speed, density,etc. The North American highway LOS standards as in the Highway Capacity Manual (HCM) use letters A through F,
+          with A being the best and F being the worst. This CMP portal visualizes the historic traffic LOS data based on auto speed of each CMP segment in San Frnacisco, filtered by year and street type.</p>
+      <br></br>
       <h2>Select road type to hide or display:</h2>
       <nav id="menu"></nav>
       <br></br>
       <br></br>
     <button type="button" class="btn btn-default" onclick="location.href='index.html'">Back to Street Type</button>
+    </div>
+    <div class="source">
+      <p>Source: <a href="http://www.sfcta.org/sites/default/files/content/Planning/CongestionManagementPlan/2017/CMP_2017_12.05.17.pdf">
+        San Francisco County Transportation Authority </a></p>
     </div>
     <!-- Map -->
     <div id = "map" class="map"></div>
@@ -55,8 +61,6 @@
 
     <!-- Javascript Imports -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.3.1/leaflet.js" integrity="sha256-CNm+7c26DTTCGRQkM9vp7aP85kHFMqs9MhPEuytF+fQ=" crossorigin="anonymous"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script> -->
-    <!-- <script src='//d3js.org/d3.v3.min.js' charset='utf-8'></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="https://cartodb-libs.global.ssl.fastly.net/cartodb.js/v3/3.15/cartodb.js"></script>
@@ -64,5 +68,6 @@
     <script src='https://api.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
     <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.44.2/mapbox-gl.js'></script>
     <script src="js/am.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   </body>
 </html>

@@ -4,22 +4,6 @@ var roadsUrl = 'https://gist.githubusercontent.com/meiqingli/29972740342cff8c3ab
 // var cmpUrl = 'https://gist.githubusercontent.com/meiqingli/d9de32bd2ffa2194303f731e67d2cd9d/raw/cee8a44a6c6d29e7aa04f3bc851a289c0580e9ef/SFCMP';
 var cmpUrl = 'https://gist.githubusercontent.com/meiqingli/c01cc8e6c1ef8185e4cd52435cd95a97/raw/e1d556dd0194d96c7144b39627bd0675f0ce3802/CMP_data'
 
-// var years = [
-//   '1991',
-//   '1993',
-//   '1995',
-//   '1997',
-//   '1999',
-//   '2001',
-//   '2004',
-//   '2006',
-//   '2007',
-//   '2009',
-//   '2011',
-//   '2013',
-//   '2015',
-//   '2017'
-// ];
 
 var years = [
   1991,
@@ -37,8 +21,6 @@ var years = [
   2015,
   2017
 ];
-
-
 
 
 // ajax wrapper

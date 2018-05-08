@@ -16,6 +16,10 @@ h4 {
     font-size: 12px;
 }
 
+a{
+    color: #818181;
+}
+
 #map {
     position: absolute;
     right: 0px;
@@ -37,9 +41,15 @@ h4 {
     color: #818181;
 }
 
-.button {
-    background-color: #000000;
-    color: white;
+.source {
+  position: absolute;
+  left: 0px;
+  width: 500px;
+  top: 630px;
+  overflow-y: auto;
+  padding: 20px;
+  font-size: 14px;
+  color: #777;
 }
 
 #menu {
@@ -47,7 +57,7 @@ h4 {
     position: absolute;
     z-index: 1;
     left: 16px;
-    top: 290px;
+    top: 510px;
     border-radius: 3px;
     width: 180px;
     border: 1px solid rgba(0,0,0,0.4);
@@ -94,6 +104,7 @@ h4 {
     position: absolute;
     right: 10px;
     z-index: 1;
+    opacity: 0.6;
 }
 
 .legend h4 {
@@ -125,6 +136,7 @@ h4 {
     border-radius: 3px;
     padding: 5px;
     margin-bottom: 5px;
+    opacity: 0.6;
 }
 
 .map-overlay h2 {
