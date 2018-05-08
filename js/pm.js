@@ -72,7 +72,7 @@ $(() => {
     var cmpData = await doAjax(cmpUrl);
     var roadsData = await doAjax(roadsUrl);
 
-    
+
     map.addLayer({
       id: 'SFroads',
       type: 'line',
@@ -153,20 +153,20 @@ $(() => {
       }
     });
 
-    // map.addLayer({
-    //   id: 'los-b-AM',
-    //   type: 'line',
-    //   source: 'los_b',
-    //   layout: {
-    //     'line-join': 'round',
-    //     'line-cap': 'round',
-    //     'visibility': 'visible'
-    //   },
-    //   paint: {
-    //     'line-color': '#99ff33',
-    //     'line-width': 2
-    //   }
-    // });
+    map.addLayer({
+      id: 'los-b-AM',
+      type: 'line',
+      source: 'los_b',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+        'visibility': 'visible'
+      },
+      paint: {
+        'line-color': '#99ff33',
+        'line-width': 2
+      }
+    });
 
     map.addSource('los_c',{
       type:'geojson',
@@ -176,28 +176,104 @@ $(() => {
       }
     });
 
-    // map.addLayer({
-    //   id: 'los-c-AM',
-    //   type: 'line',
-    //   source: 'los_c',
-    //   layout: {
-    //     'line-join': 'round',
-    //     'line-cap': 'round',
-    //     'visibility': 'visible'
-    //   },
-    //   paint: {
-    //     'line-color': '#ccff33',
-    //     'line-width': 2
-    //   }
-    // });
+    map.addLayer({
+      id: 'los-c-AM',
+      type: 'line',
+      source: 'los_c',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+        'visibility': 'visible'
+      },
+      paint: {
+        'line-color': '#ccff33',
+        'line-width': 2
+      }
+    });
+
+    map.addSource('los_d',{
+      type:'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: los_d,
+      }
+    });
+
+    map.addLayer({
+      id: 'los-d-AM',
+      type: 'line',
+      source: 'los_d',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+        'visibility': 'visible'
+      },
+      paint: {
+        'line-color': '#ffff00',
+        'line-width': 2
+      }
+    });
+
+    map.addSource('los_e',{
+      type:'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: los_e,
+      }
+    });
+
+    map.addLayer({
+      id: 'los-e-AM',
+      type: 'line',
+      source: 'los_e',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+        'visibility': 'visible'
+      },
+      paint: {
+        'line-color': '#ff9900',
+        'line-width': 2
+      }
+    });
+
+    map.addSource('los_f',{
+      type:'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: los_e,
+      }
+    });
+
+    map.addLayer({
+      id: 'los-f-AM',
+      type: 'line',
+      source: 'los_f',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+        'visibility': 'visible'
+      },
+      paint: {
+        'line-color': '#cc3300',
+        'line-width': 2
+      }
+    });
+
 
     // map filter function
     function filterBy(index) {
       var filters = ['==', 'year', years[index]];
-      console.log(filters, 'check filter')
+      // console.log(filters, 'check filter')
       map.setFilter('los-a-AM', filters);
+      map.setFilter('los-b-AM', filters);
+      map.setFilter('los-c-AM', filters);
+      map.setFilter('los-d-AM', filters);
+      map.setFilter('los-e-AM', filters);
+      map.setFilter('los-f-AM', filters);
 
-      // Set the label to the month
+
+      // Set the label to the year
       document.getElementById('year').textContent = years[index];
     }
     // Set filter to the first year
@@ -210,130 +286,130 @@ $(() => {
     });
 
 
-    // // add source
-    // map.addSource('HighSpeed', {
-    //   type: 'geojson',
-    //   data: {
-    //     type: 'FeatureCollection',
-    //     features: HighSpeed,
-    //   },
-    // });
-    //
-    // // add layer
-    // map.addLayer({
-    //   id: 'HighSpeed',
-    //   type: 'line',
-    //   source: 'HighSpeed',
-    //   layout: {
-    //     'line-join': 'round',
-    //     'line-cap': 'round',
-    //     'visibility': 'visible'
-    //   },
-    //   paint: {
-    //     'line-color': '#8DD3C7',
-    //     'line-width': 2
-    //   }
-    // });
-    //
-    // // add source
-    // map.addSource('Suburban', {
-    //   type: 'geojson',
-    //   data: {
-    //     type: 'FeatureCollection',
-    //     features: Suburban,
-    //   },
-    // });
-    //
-    // // add layer
-    // map.addLayer({
-    //   id: 'Suburban',
-    //   type: 'line',
-    //   source: 'Suburban',
-    //   layout: {
-    //     'line-join': 'round',
-    //     'line-cap': 'round',
-    //     'visibility': 'visible'
-    //   },
-    //   paint: {
-    //     'line-color': '#ffffb3',
-    //     'line-width': 2
-    //   }
-    // });
-    //
-    // // add source
-    // map.addSource('Intermediate', {
-    //   type: 'geojson',
-    //   data: {
-    //     type: 'FeatureCollection',
-    //     features: Intermediate,
-    //   },
-    // });
-    //
-    // // add layer
-    // map.addLayer({
-    //   id: 'Intermediate',
-    //   type: 'line',
-    //   source: 'Intermediate',
-    //   layout: {
-    //     'line-join': 'round',
-    //     'line-cap': 'round',
-    //     'visibility': 'visible'
-    //   },
-    //   paint: {
-    //     'line-color': '#bebada',
-    //     'line-width': 2
-    //   }
-    // });
-    //
-    // // add source
-    // map.addSource('Urban', {
-    //   type: 'geojson',
-    //   data: {
-    //     type: 'FeatureCollection',
-    //     features: Urban,
-    //   },
-    // });
-    //
-    // // add layer
-    // map.addLayer({
-    //   id: 'Urban',
-    //   type: 'line',
-    //   source: 'Urban',
-    //   layout: {
-    //     'line-join': 'round',
-    //     'line-cap': 'round',
-    //     'visibility': 'visible'
-    //   },
-    //   paint: {
-    //     'line-color': '#fb8072',
-    //     'line-width': 2
-    //   }
-    // });
-    //
-    // // add source
-    // map.addSource('Freeway', {
-    //   type: 'geojson',
-    //   data: {
-    //     type: 'FeatureCollection',
-    //     features: Freeway,
-    //   },
-    // });
-    //
-    // // add layer
-    // map.addLayer({
-    //   id: 'Freeway',
-    //   type: 'line',
-    //   source: 'Freeway',
-    //   layout: {
-    //     'line-join': 'round',
-    //     'line-cap': 'round',
-    //     'visibility': 'visible'
-    //   },
-    //   paint: {
-    //     'line-color': '#80b1d3',
-    //     'line-width': 2
-    //   }
-    // });
+    // add source
+    map.addSource('HighSpeed', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: HighSpeed,
+      },
+    });
+
+    // add layer
+    map.addLayer({
+      id: 'HighSpeed',
+      type: 'line',
+      source: 'HighSpeed',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+        'visibility': 'none'
+      },
+      paint: {
+        'line-color': '#888',
+        'line-width': 2
+      }
+    });
+
+    // add source
+    map.addSource('Suburban', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: Suburban,
+      },
+    });
+
+    // add layer
+    map.addLayer({
+      id: 'Suburban',
+      type: 'line',
+      source: 'Suburban',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+        'visibility': 'none'
+      },
+      paint: {
+        'line-color': '#888',
+        'line-width': 2
+      }
+    });
+
+    // add source
+    map.addSource('Intermediate', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: Intermediate,
+      },
+    });
+
+    // add layer
+    map.addLayer({
+      id: 'Intermediate',
+      type: 'line',
+      source: 'Intermediate',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+        'visibility': 'none'
+      },
+      paint: {
+        'line-color': '#888',
+        'line-width': 2
+      }
+    });
+
+    // add source
+    map.addSource('Urban', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: Urban,
+      },
+    });
+
+    // add layer
+    map.addLayer({
+      id: 'Urban',
+      type: 'line',
+      source: 'Urban',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+        'visibility': 'none'
+      },
+      paint: {
+        'line-color': '#888',
+        'line-width': 2
+      }
+    });
+
+    // add source
+    map.addSource('Freeway', {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: Freeway,
+      },
+    });
+
+    // add layer
+    map.addLayer({
+      id: 'Freeway',
+      type: 'line',
+      source: 'Freeway',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+        'visibility': 'none'
+      },
+      paint: {
+        'line-color': '#888',
+        'line-width': 2
+      }
+    });
 
     //add street type menu
     var toggleableLayerIds = [ 'HighSpeed', 'Suburban','Intermediate','Urban','Freeway' ];
@@ -353,12 +429,12 @@ $(() => {
 
         var visibility = map.getLayoutProperty(clickedLayer, 'visibility');
 
-        if (visibility === 'visible') {
-          map.setLayoutProperty(clickedLayer, 'visibility', 'none');
+        if (visibility === 'none') {
+          map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
           this.className = '';
         } else {
           this.className = 'active';
-          map.setLayoutProperty(clickedLayer, 'visibility', 'visible');
+          map.setLayoutProperty(clickedLayer, 'visibility', 'none');
         }
       };
 
