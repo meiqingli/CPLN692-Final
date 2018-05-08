@@ -113,10 +113,10 @@ function filterBy(year) {
     var time_PM = cmpData.features.filter(item => item.properties.period === 'PM');
     var los_a = cmpData.features.filter(item => (item.properties.los_hcm85 === 'A') && (item.properties.period === 'AM'));
     var los_b = cmpData.features.filter(item => (item.properties.los_hcm85 === 'B') && (item.properties.period === 'AM'));
-    var los_c = mpData.features.filter(item => (item.properties.los_hcm85 === 'C') && (item.properties.period === 'AM'));
-    var los_d = mpData.features.filter(item => (item.properties.los_hcm85 === 'D') && (item.properties.period === 'AM'));
-    var los_e = mpData.features.filter(item => (item.properties.los_hcm85 === 'E') && (item.properties.period === 'AM'));
-    var los_f = mpData.features.filter(item => (item.properties.los_hcm85 === 'F') && (item.properties.period === 'AM'));
+    var los_c = cmpData.features.filter(item => (item.properties.los_hcm85 === 'C') && (item.properties.period === 'AM'));
+    var los_d = cmpData.features.filter(item => (item.properties.los_hcm85 === 'D') && (item.properties.period === 'AM'));
+    var los_e = cmpData.features.filter(item => (item.properties.los_hcm85 === 'E') && (item.properties.period === 'AM'));
+    var los_f = cmpData.features.filter(item => (item.properties.los_hcm85 === 'F') && (item.properties.period === 'AM'));
 
     map.addSource('los_a',{
       type:'geojson',
