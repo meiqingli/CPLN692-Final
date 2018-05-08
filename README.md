@@ -1,7 +1,7 @@
 # San Francisco Traffic Congestion Management Program Portal
 Final Project for CPLN692 JavaScript Programming
 #### Meiqing Li | MCP '18
-#### Visit site at:
+#### Visit site at: https://meiqingli.github.io/CPLN692-Final/
 
 ## Features
 This JavaScript application is an interactive tool that visualizes the historic congestion management program (CMP) data in San Francisco. It serves as a prototype for tools to rearrange and visualize SFCTA's big volume of traffic data within the same geographic scope of city, and road segments. It is also a handy public engagement tool to explore changes of traffic congestion between the years 1991 and 2017, all over the city as well as by street types.
