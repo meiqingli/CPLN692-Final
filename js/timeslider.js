@@ -149,9 +149,6 @@ function filterBy(year) {
         var year = parseInt(e.target.value, 10);
         filterBy(year);
       });
-    });
-});    
-
 
 
     // // add source
@@ -327,6 +324,7 @@ function filterBy(year) {
 
       map.getCanvas().style.cursor = features.length ? 'pointer' : '';
     });
+
   });
 
 });
