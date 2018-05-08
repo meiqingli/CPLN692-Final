@@ -22,7 +22,6 @@ var years = [
   2017
 ];
 
-
 // ajax wrapper
 async function doAjax(url) {
   let result;
@@ -243,7 +242,7 @@ $(() => {
     });
 
 
-    // map filter function
+    // map filter function, filter LOS by year
     function filterBy(index) {
       var filters = ['==', 'year', years[index]];
       // console.log(filters, 'check filter')
@@ -254,8 +253,6 @@ $(() => {
       map.setFilter('los-e-AM', filters);
       map.setFilter('los-f-AM', filters);
 
-
-      // Set the label to the year
       document.getElementById('year').textContent = years[index];
     }
     // Set filter to the first year
@@ -266,7 +263,6 @@ $(() => {
       var index = parseInt(e.target.value, 10);
       filterBy(index);
     });
-
 
     // add source
     map.addSource('HighSpeed', {

@@ -1,9 +1,7 @@
 # San Francisco Traffic Congestion Management Program Portal
 Final Project for CPLN692 JavaScript Programming
-####
-Meiqing Li | MCP '18
-####
-visit site at:
+#### Meiqing Li | MCP '18
+#### Visit site at:
 
 ## Features
 This interactive JavaScript application
@@ -22,7 +20,7 @@ RStudio
 #### JavaScript Libraries
 - Bootstrap
 - Mapbox GL JS
-- leaflet
+- Leaflet
 - jQuery
 - CartoDB
 
