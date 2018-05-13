@@ -6,7 +6,7 @@ Final Project for CPLN692 JavaScript Programming
 ## Features
 This JavaScript application is an interactive tool that visualizes the historic congestion management program (CMP) data in San Francisco. It serves as a prototype for tools to rearrange and visualize SFCTA's big volume of traffic data within the same geographic scope of city, and road segments. It is also a handy public engagement tool to explore changes of traffic congestion between the years 1991 and 2017, all over the city as well as by street types.
 
-The first page is an overview of all CMP segments in San Francisco. The segments can be filtered by street type (i.e. high speed, suburban, intermediate, urban, freeway). When hovering over each segment, there is a popup window showing the CMP name.
+The first page is an overview of all CMP segments in San Francisco. The segments can be filtered by street type (i.e. high speed, suburban, intermediate, urban, freeway). When hovering over each segment, there is a popup window showing the CMP name. There are two more pages showing LOS for each CMP segment.
 
 ## Data and Tools
 #### Road features
